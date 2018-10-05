@@ -37,8 +37,9 @@ convert_flac () {
 
 	SRCDIR=`dirname "$SRC"`
 	SRCBASE=`basename "$SRC" '.flac'`
+	SRCDIRNAME=$(cd "$SRCDIR" && basename "$PWD")
 
-	DSTDIR="$SRCDIR/mp3"
+	DSTDIR="$SRCDIR/$SRCDIRNAME"
 	DST="$DSTDIR/${SRCBASE}.mp3"
 
 	if [ -e "$DST" ]; then
