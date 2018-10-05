@@ -30,8 +30,8 @@ reset_tags () {
 
 convert_flac () {
 	SRC=$1
-	if [ -z "$SRC" ]; then
-		echo "$0: Invalid source FLAC file" 1>&2
+	if [ ! -f "$SRC" ]; then
+		echo "$0: Invalid source FLAC file: $SRC" 1>&2
 		return 1
 	fi
 
