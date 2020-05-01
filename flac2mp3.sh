@@ -19,6 +19,7 @@ reset_tags () {
 	TAG_TOTALTRACKS=
 	TAG_ALBUM=
 	TAG_ARTIST=
+	TAG_ALBUMARTIST=
 	TAG_COMMENT=
 	TAG_GENRE=
 	TAG_DISCNUMBER=
@@ -77,10 +78,9 @@ convert_flac () {
 	[ -n "$TAG_DISCNUMBER" ] && [ -n "$TAG_TOTALDISCS" ] && TAG_DISCNUMBER="$TAG_DISCNUMBER/$TAG_TOTALDISCS"
 
 	# Convertim a mp3.
-	# FIXME: Encara que fem aixo el Discnumber no s'afegeix:
-	#        --tv "DISCNUMBER=$TAG_DISCNUMBER"
-	#        Potser LAME no ho fa be?
-	"$LAME" $LAME_OPTS --tt "$TAG_TITLE" --ta "$TAG_ARTIST" --tl "$TAG_ALBUM" --ty "$TAG_DATE" --tc "$TAG_COMMENT" --tg "$TAG_GENRE" --tn "$TAG_TRACKNUMBER" "$SRCWAV" "$DST"
+	# Per alguns tags no hi ha una opcio directa de LAME.
+	# Referencia tags: https://help.mp3tag.de/main_tags.html
+	"$LAME" $LAME_OPTS --tt "$TAG_TITLE" --ta "$TAG_ARTIST" --tl "$TAG_ALBUM" --ty "$TAG_DATE" --tc "$TAG_COMMENT" --tg "$TAG_GENRE" --tn "$TAG_TRACKNUMBER" --tv "TPE2=$TAG_ALBUMARTIST" --tv "TPOS=$TAG_DISCNUMBER" "$SRCWAV" "$DST"
 	STATUS=$?
 
 	# Esborrem fitxers temporals.
