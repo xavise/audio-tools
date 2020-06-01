@@ -17,7 +17,6 @@ reset_tags () {
 	TAG_ALBUM=
 	TAG_ARTIST=
 	TAG_ALBUMARTIST=
-	TAG_COMMENT=
 	TAG_DATE=
 	TAG_DISCNUMBER=
 	TAG_GENRE=
@@ -80,7 +79,7 @@ convert_flac () {
 	# Convertim a mp3.
 	# Per alguns tags no hi ha una opcio directa de LAME.
 	# Referencia tags: https://help.mp3tag.de/main_tags.html
-	"$LAME" $LAME_OPTS --tt "$TAG_TITLE" --ta "$TAG_ARTIST" --tl "$TAG_ALBUM" --ty "$TAG_DATE" --tc "$TAG_COMMENT" --tg "$TAG_GENRE" --tn "$TAG_TRACKNUMBER" --tv "TPE2=$TAG_ALBUMARTIST" --tv "TPOS=$TAG_DISCNUMBER" "$SRCWAV" "$DST"
+	"$LAME" $LAME_OPTS --tt "$TAG_TITLE" --ta "$TAG_ARTIST" --tl "$TAG_ALBUM" --ty "$TAG_DATE" --tg "$TAG_GENRE" --tn "$TAG_TRACKNUMBER" --tv "TPE2=$TAG_ALBUMARTIST" --tv "TPOS=$TAG_DISCNUMBER" "$SRCWAV" "$DST"
 	STATUS=$?
 
 	# Esborrem fitxers temporals.
